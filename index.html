@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ratio Res</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="styles.css" type="text/css"/>
 </head>
 <body>
   <header>
-    <img src="assets/logo-color.png" alt="Ratio Res Logo" class="logo" />
+    <img src="assets/images/logo-color.png" alt="Ratio Res Logo" class="logo" />
     <h1>Ratio Res</h1>
     <p class="tagline">behind our efforts let there be our efforts...</p>
   </header>
@@ -16,7 +16,7 @@
   <main>
     <article>
       <h2 class="post-title">Initium</h2>
-      <img src="assets/newton-williamblake-1.jpg" alt="Newton by William Blake" />
+      <img src="assets/images/newton-williamblake-1.jpg" alt="Newton by William Blake" />
       <p>
         Welcome to <strong>Ratio Res</strong>. This journal is crafted from exploration and enquiry. Here, the reader will find passages, essays and extracts that mirror the breadth of my interests and experiences.
       </p>
@@ -30,14 +30,35 @@
       </p>
     </article>
 
-    <article>
-      <h2 class="post-title"><a href="blog/chladni-mobius/index.html">Chladni-Mobius: A Grid Beyond</a></h2>
-      <p>Coming soon — a deep dive into vibrational geometry and Möbius transformations on the canvas.</p>
+    <!-- Link to Chladni Mobius post -->
+    <article id="chladni-post-link">
+      <h2 class="post-title">Dynamic Geometries: The Chladni-Möbius Visualizer</h2>
+      <p></p>
     </article>
   </main>
 
   <footer>
     &copy; 2025 Ratio Res. All rights reserved.
   </footer>
+
+  <script>
+    // Wait for the DOM to fully load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Select the container where the post will be loaded dynamically
+      const chladniPostLink = document.getElementById('chladni-post-link');
+      
+      // Fetch the content of the Chladni Mobius post
+      fetch('blog/chladni-mobius-/index.html')
+        .then(response => response.text())
+        .then(data => {
+          // Replace the content of the Chladni Mobius link with the loaded post content
+          chladniPostLink.innerHTML = data;
+        })
+        .catch(error => {
+          console.error('Error loading Chladni Mobius post:', error);
+          chladniPostLink.innerHTML = '<p>Sorry, we couldn’t load the post right now. Please try again later.</p>';
+        });
+    });
+  </script>
 </body>
 </html>

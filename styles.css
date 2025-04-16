@@ -1,0 +1,73 @@
+body {
+    font-family: 'Georgia', serif;
+    background: #fafafa;
+    color: #222;
+    display: flex;
+    flex-direction: column;  /* Stack content vertically */
+    align-items: center;     /* Center the content horizontally */
+    justify-content: flex-start;
+    width: 100%;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+header, main, footer {
+    width: 100%;
+    max-width: 1000px;  /* Ensure it doesn't stretch too wide on large screens */
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Center the content inside */
+}
+
+header {
+    margin-bottom: 2rem;
+}
+
+img.logo {
+    width: 20vw;
+    max-width: 150px;  /* Maximum width of the logo */
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.tagline {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+article {
+    margin-bottom: 3rem;
+    width: 100%;
+}
+
+article img {
+    width: 100%;  /* Make sure images are responsive */
+    height: auto;
+    margin: 1rem 0;
+}
+
+footer {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 2rem;
+}
+
+/* Flexbox for the images in articles */
+.chladni-post img {
+    display: inline-block;
+    max-height: 200px;
+    width: auto;
+    margin-right: 20px;
+}
+
+.chladni-post img:last-child {
+    margin-right: 0;
+}

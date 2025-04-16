@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Geometries: The Chladni-Möbius Visualizer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="chladni-post">
+      <h1>Dynamic Geometries: The Chladni-Möbius Visualizer</h1>
+      <p><strong>Date:</strong> April 16, 2025</p>
+      <p><strong>Categories:</strong> demo, project</p>
+
+      <h2>Dynamic Geometries: The Chladni-Möbius Visualizer</h2>
+      <p><strong>Executive Summary</strong></p>
+      <p>
+        The Chladni-Möbius Visualizer is an interactive WebGL application that
+        combines principles from physics and mathematics to render complex
+        geometric transformations. By merging Chladni patterns and Möbius
+        transformations—enhanced with noise modulation—this tool produces
+        visualizations that respond to user input and evolve over time.
+      </p>
+
+      <img src="assets/images/chladniPatterns.jpg" alt="ChladniPatterns" />
+      <img src="assets/images/MoebiusTransforms.png" alt="Moebius transforms" />
+
+      <h2>Introduction</h2>
+      <p>
+        This visualizer demonstrates how sound-induced wave patterns (Chladni
+        patterns) and complex mathematical mappings (Möbius transformations) can
+        be integrated into a single interactive system using WebGL via Three.js.
+      </p>
+
+      <h3>Features:</h3>
+      <ul>
+        <li>
+          Educational Exploration: Visualizing and understanding mathematical
+          transformations.
+        </li>
+        <li>
+          Digital Art Creation: Generating unique, parameter-driven visuals.
+        </li>
+        <li>
+          Technical Demonstration: Showcasing advanced WebGL capabilities.
+        </li>
+        <li>
+          Practical Application: Applying theoretical math in visual computing.
+        </li>
+      </ul>
+
+      <h2>Quick Start</h2>
+      <p>Want to try it yourself?</p>
+      <pre><code>git clone https://github.com/your-username/chladni-mobius-visualizer
+cd chladni-mobius-visualizer
+npm install
+npm start</code></pre>
+      <p>
+        Then open your browser at <code>http://localhost:3000</code><br />Or try
+        the live demo
+        <a href="https://your-username.github.io/chladni-mobius-visualizer"
+          >here</a
+        >.
+      </p>
+
+      <h2>The Core Concepts</h2>
+      <h3>🌀 Chladni Patterns</h3>
+      <p>
+        Chladni patterns are visual manifestations of standing waves—seen when
+        vibrating plates gather sand at nodes where wave interference cancels
+        out. In this project, we simulate them in real-time via shaders to
+        explore dynamic symmetry and wave interference patterns.
+      </p>
+
+      <h3>♾️ Möbius Transformations</h3>
+      <p>Defined as:</p>
+      <pre><code>f(z) = (az + b) / (cz + d)  where ad − bc ≠ 0</code></pre>
+      <p>
+        These are conformal maps on the complex plane, preserving angles and
+        local geometry.
+      </p>
+
+      <p><strong>Applications:</strong></p>
+      <ul>
+        <li>Texture warping</li>
+        <li>Optical lens simulation</li>
+        <li>Shader-based deformations</li>
+        <li>Fractal generation</li>
+      </ul>
+
+      <h2>Combining Physics and Mathematics</h2>
+      <p>We integrate the two systems by:</p>
+      <ul>
+        <li>Using wave dynamics to create surface variations</li>
+        <li>Twisting the geometry with Möbius transformations</li>
+        <li>Modulating with noise for natural variation</li>
+      </ul>
+
+      <h3>🎛️ Interactive Features</h3>
+      <p>Users can control:</p>
+      <ul>
+        <li>Chladni: Amplitude, frequency, and time scale</li>
+        <li>Möbius: Coefficients a, b, c, d, factor, compensation</li>
+        <li>Noise: Scale and time</li>
+        <li>Rotation: Enable/disable, frequency, thresholds</li>
+      </ul>
+
+      <p><strong>Presets include:</strong></p>
+      <ul>
+        <li>Default</li>
+        <li>No Rotation</li>
+        <li>Strong Waves</li>
+        <li>Classic Möbius</li>
+        <li>Organic Motion</li>
+      </ul>
+
+      <h3>📹 Video Demo</h3>
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+
+      <h2>🛠️ Technical Implementation</h2>
+      <h3>Architecture Overview</h3>
+      <ul>
+        <li>
+          <strong>State Store</strong> – Manages user and runtime parameters
+        </li>
+        <li>
+          <strong>Transformation Engine</strong> – Computes noise and
+          Möbius/Chladni functions
+        </li>
+        <li>
+          <strong>Renderer</strong> – Real-time visualization using WebGL
+          (Three.js)
+        </li>
+      </ul>
+
+      <h3>Rendering Pipeline</h3>
+      <pre><code>const combinedMatrix = new THREE.Matrix4();
+combinedMatrix.multiply(positionMatrix);
+combinedMatrix.multiply(noiseMatrix);
+combinedMatrix.multiply(mobiusMatrix);
+combinedMatrix.multiply(chladniMatrix);</code></pre>
+
+      <h3>Shader Pipeline (GLSL)</h3>
+      <pre><code>vec2 complex_mul(vec2 a, vec2 b) {
+  return vec2(a.x * b.x - a.y * b.y, a.x * b.y + a.y * b.x);
+}
+
+vec2 complex_div(vec2 a, vec2 b) {
+  float denom = b.x*b.x + b.y*b.y;
+  return vec2((a.x*b.x + a.y*b.y)/denom, (a.y*b.x - a.x*b.y)/denom);
+}</code></pre>
+
+      <h3>Enhanced Möbius Function</h3>
+      <pre><code>vec3 applyEnhancedMobius(vec3 pos, float time) {
+  float r = length(pos.xy);
+  float angle = uMobiusFactor * r;
+  float zInfluence = 1.0 + 0.5 * sin(pos.z * 0.5);
+  angle *= zInfluence;
+  // apply twist via matrix rotation logic
+  return rotated;
+}</code></pre>
+
+      <h3>State Management</h3>
+      <ul>
+        <li>grid: resolution, layout</li>
+        <li>transform: math parameters</li>
+        <li>appearance: colors, styles</li>
+        <li>camera: view controls</li>
+        <li>runtime: animation frames, time</li>
+      </ul>
+
+      <h3>📈 Performance Considerations</h3>
+      <ul>
+        <li>GPU shader acceleration</li>
+        <li>Combined matrix transforms</li>
+        <li>Adaptive grid detail</li>
+        <li>Optimized noise math</li>
+      </ul>
+
+      <h2>🧪 Development Journey</h2>
+      <h3>Challenges Solved:</h3>
+      <ul>
+        <li>Möbius edge case stability</li>
+        <li>Performance tuning</li>
+        <li>Intuitive UI for abstract math</li>
+      </ul>
+
+      <h3>Next Steps:</h3>
+      <ul>
+        <li>Audio-reactive Chladni patterns</li>
+        <li>Machine learning presets</li>
+        <li>VR/AR adaptation</li>
+        <li>Mobile optimization</li>
+      </ul>
+
+      <h3>🤓 Under the Hood</h3>
+      <p>
+        Screenshots of code, state tree, and transformation diagrams can go
+        here.
+      </p>
+
+      <h3>💬 Community & Contributions</h3>
+      <p><strong>Share Your Visuals!</strong></p>
+      <ul>
+        <li>Post to Twitter with <code>#ChladniMobius</code></li>
+        <li>Share preset configs</li>
+        <li>Create tutorials!</li>
+      </ul>
+
+      <h3>Get Involved</h3>
+      <ul>
+        <li>Open issues on GitHub</li>
+        <li>Submit PRs</li>
+        <li>Improve docs</li>
+        <li>Suggest ideas!</li>
+      </ul>
+
+      <h3>🙏 Acknowledgments</h3>
+      <ul>
+        <li>Three.js for rendering</li>
+        <li>dat.GUI for UI</li>
+        <li>Ian McEwan (Simplex Noise)</li>
+        <li>Ernst Chladni & August Möbius for mathematical inspiration</li>
+      </ul>
+
+      <h3>👤 About the Author</h3>
+      <p>
+        Brief bio here: background in WebGL, creative coding, or mathematics.
+      </p>
+
+      <h3>📚 Resources</h3>
+      <ul>
+        <li>“Patterns of Vibration” – Ernst Chladni</li>
+        <li>“Visualizing Mathematics with 3D Printing” – Henry Segerman</li>
+        <li>“WebGL Insights” – Patrick Cozzi</li>
+        <li>Möbius Transformations – Douglas Arnold</li>
+      </ul>
+
+      <h3>📬 Contact</h3>
+      <ul>
+        <li>GitHub: yourusername</li>
+        <li>Twitter: @yourhandle</li>
+        <li>Email: contact@example.com</li>
+        <li>Website: yourdomain.com</li>
+      </ul>
+    </div>
+  </body>
+</html>
