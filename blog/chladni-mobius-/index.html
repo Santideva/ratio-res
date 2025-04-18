@@ -15,14 +15,19 @@
       <h2>Dynamic Geometries: The Chladni-Möbius Visualizer</h2>
       <p><strong>Executive Summary</strong></p>
       <p>
-        “The Chladni-Möbius Visualizer explores the poetic intersection of
+        "The Chladni-Möbius Visualizer explores the poetic intersection of
         physics and math, turning abstract formulae into real-time, interactive
         art. This tool offer a hands-on experience of symmetry, transformation
-        and resornance to developers, digital artists and math enthusiasts.”
+        and resornance to developers, digital artists and math enthusiasts."
       </p>
 
-      <img src="assets/images/chladniPatterns.jpg" alt="ChladniPatterns" />
-      <img src="assets/images/MoebiusTransforms.png" alt="Moebius transforms" />
+      <div class="image-container">
+        <img src="assets/images/chladniPatterns.jpg" alt="ChladniPatterns" />
+        <img
+          src="assets/images/MoebiusTransforms.png"
+          alt="Moebius transforms"
+        />
+      </div>
 
       <h2>Introduction</h2>
       <p>
@@ -57,16 +62,15 @@ npm start</code></pre>
       <p>Then open your browser at <code>http://localhost:3000</code><br /></p>
 
       <h2>The Core Concepts</h2>
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/IpvblzMMC14?si=dtC2Q0OhzS7CceL1"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-      ></iframe>
+      <div class="video-container">
+        <iframe
+          src="https://www.youtube.com/embed/IpvblzMMC14?si=dtC2Q0OhzS7CceL1"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
       <h3>🌀 Chladni Patterns</h3>
       <p>
         Chladni patterns are visual manifestations of standing waves—seen when
@@ -77,7 +81,7 @@ npm start</code></pre>
 
       <h3>♾️ Möbius Transformations</h3>
       <p>Defined as:</p>
-      <pre><code>f(z) = (az + b) / (cz + d)  where ad − bc ≠ 0</code></pre>
+      <pre><code>f(z) = (az + b) / (cz + d)  where ad − bc ≠ 0</code></pre>
       <p>
         These are conformal maps on the complex plane, preserving angles and
         local geometry.
@@ -98,16 +102,15 @@ npm start</code></pre>
         <li>Twisting the geometry with Möbius transformations</li>
         <li>Modulating with noise for natural variation</li>
       </ul>
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/7WN2BaoTZrA?si=vtmQQFBjb2AzYWgu"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-      ></iframe>
+      <div class="video-container">
+        <iframe
+          src="https://www.youtube.com/embed/7WN2BaoTZrA?si=vtmQQFBjb2AzYWgu"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
       <h3>🎛️ Interactive Features</h3>
       <p>Users can control:</p>
       <ul>
@@ -127,16 +130,15 @@ npm start</code></pre>
       </ul>
 
       <h3>📹 Video Demo</h3>
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/LDBks8btU4Y?si=2xhRJhP3IeIrPMJO"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-      ></iframe>
+      <div class="video-container">
+        <iframe
+          src="https://www.youtube.com/embed/LDBks8btU4Y?si=2xhRJhP3IeIrPMJO"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
 
       <h2>🛠️ Technical Implementation</h2>
       <h3>Architecture Overview</h3>
@@ -293,17 +295,30 @@ vec2 complex_div(vec2 a, vec2 b) {
 
       <h3>📚 Resources</h3>
       <ul>
-        <li>“Patterns of Vibration” – Ernst Chladni</li>
-        <li>“Visualizing Mathematics with 3D Printing” – Henry Segerman</li>
-        <li>“WebGL Insights” – Patrick Cozzi</li>
+        <li>"Patterns of Vibration" – Ernst Chladni</li>
+        <li>"Visualizing Mathematics with 3D Printing" – Henry Segerman</li>
+        <li>"WebGL Insights" – Patrick Cozzi</li>
         <li>Möbius Transformations – Douglas Arnold</li>
       </ul>
 
       <h3>📬 Contact</h3>
       <ul>
-        <li>GitHub: https://github.com/Santideva</li>
-        <li>Instagram: https://www.instagram.com/livetrope/</li>
-        <li>Email: gauravtejpal@gmail.com</li>
+        <li>
+          GitHub:
+          <a href="https://github.com/Santideva"
+            >https://github.com/Santideva</a
+          >
+        </li>
+        <li>
+          Instagram:
+          <a href="https://www.instagram.com/livetrope/"
+            >https://www.instagram.com/livetrope/</a
+          >
+        </li>
+        <li>
+          Email:
+          <a href="mailto:gauravtejpal@gmail.com">gauravtejpal@gmail.com</a>
+        </li>
       </ul>
     </div>
   </body>
