@@ -1,64 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ratio Res</title>
-  <link rel="stylesheet" href="styles.css" type="text/css"/>
-</head>
-<body>
-  <header>
-    <img src="assets/images/logo-color.png" alt="Ratio Res Logo" class="logo" />
-    <h1>Ratio Res</h1>
-    <p class="tagline">behind our efforts let there be our efforts...</p>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ratio Res</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Nunito+Sans:wght@300;400&family=Roboto+Condensed:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+  </head>
+  <body>
+    <header>
+      <img
+        src="assets/images/logo-color.png"
+        alt="Ratio Res Logo"
+        class="logo"
+      />
+      <h1></h1>
+      <p class="tagline"></p>
+    </header>
 
-  <main>
-    <article>
-      <h2 class="post-title">Initium</h2>
-      <img src="assets/images/newton-williamblake-1.jpg" alt="Newton by William Blake" />
-      <p>
-        Welcome to <strong>Ratio Res</strong>. This journal is crafted from exploration and enquiry. Here, the reader will find passages, essays and extracts that mirror the breadth of my interests and experiences.
-      </p>
-      <p>
-        This journal is intended to serve:
+    <nav class="sidebar">
+      <h2>Journal Entries</h2>
+      <ul id="post-list">
+        <li class="active"><a href="#initium">Initium</a></li>
+        <li>
+          <a href="#chladni-mobius"
+            >Dynamic Geometries: The Chladni-Möbius Visualizer</a
+          >
+        </li>
+        <!-- More posts will be added here -->
+      </ul>
+    </nav>
+
+    <main>
+      <article id="initium">
+        <h2 class="post-title">Initium</h2>
+        <img
+          src="assets/images/newton-williamblake-1.jpg"
+          alt="Newton by William Blake"
+        />
+        <p>
+          Welcome to <strong>Ratio Res</strong>. This journal is crafted from
+          exploration and enquiry. Here, the reader will find passages, essays
+          and extracts that mirror the breadth of my interests and experiences.
+        </p>
+        <p>This journal is intended to serve:</p>
         <ol>
-          <li>A repository for all my writings that span a variety of subjects – History, Law, Art Theory and more.</li>
+          <li>
+            A repository for all my writings that span a variety of subjects –
+            History, Law, Art Theory and more.
+          </li>
           <li>A record of my insights, experiences and learning.</li>
           <li>A forum for sharing ideas and exploring abiding themes.</li>
         </ol>
-      </p>
-    </article>
+      </article>
 
-    <!-- Link to Chladni Mobius post -->
-    <article id="chladni-post-link">
-      <h2 class="post-title">Dynamic Geometries: The Chladni-Möbius Visualizer</h2>
-      <p></p>
-    </article>
-  </main>
+      <!-- Keep the original dynamic loading post link -->
+      <article id="chladni-post-link">
+        <h2 class="post-title">
+          Dynamic Geometries: The Chladni-Möbius Visualizer
+        </h2>
+        <p></p>
+      </article>
 
-  <footer>
+      <!-- Add the full article that will be shown when clicked from sidebar -->
+      <article id="chladni-mobius" style="display: none">
+        <h2 class="post-title">
+          Dynamic Geometries: The Chladni-Möbius Visualizer
+        </h2>
+        <div id="chladni-post-content"></div>
+      </article>
+    </main>
+
+    <!-- <footer>
     &copy; 2025 Ratio Res. All rights reserved.
-  </footer>
+  </footer> -->
 
-  <script>
-    // Wait for the DOM to fully load
-    document.addEventListener('DOMContentLoaded', function() {
-      // Select the container where the post will be loaded dynamically
-      const chladniPostLink = document.getElementById('chladni-post-link');
-      
-      // Fetch the content of the Chladni Mobius post
-      fetch('blog/chladni-mobius-/index.html')
-        .then(response => response.text())
-        .then(data => {
-          // Replace the content of the Chladni Mobius link with the loaded post content
-          chladniPostLink.innerHTML = data;
-        })
-        .catch(error => {
-          console.error('Error loading Chladni Mobius post:', error);
-          chladniPostLink.innerHTML = '<p>Sorry, we couldn’t load the post right now. Please try again later.</p>';
+    <script>
+      // Wait for the DOM to fully load
+      document.addEventListener("DOMContentLoaded", function () {
+        // Load Chladni post content for both the inline version and the full article version
+        fetch("blog/chladni-mobius-/index.html")
+          .then((response) => response.text())
+          .then((data) => {
+            // Replace the content of the Chladni Mobius link with the loaded post content
+            document.getElementById("chladni-post-link").innerHTML = data;
+
+            // Also store the content in the full article version for sidebar navigation
+            document.getElementById("chladni-post-content").innerHTML = data;
+
+            // Apply styling to dynamically loaded content
+            const dynamicTitles = document.querySelectorAll(
+              "#chladni-post-content .post-title"
+            );
+            dynamicTitles.forEach((title) => {
+              title.style.color = "#1a3a1a"; // Jade green
+              title.style.textShadow = "1px 1px 3px rgba(109, 7, 26, 0.7)"; // Red box shadow
+              title.style.fontFamily = "'Montserrat', sans-serif";
+              title.style.fontWeight = "300";
+            });
+
+            // Apply font styling to other dynamically loaded elements
+            const dynamicSubheadings = document.querySelectorAll(
+              "#chladni-post-content h2:not(.post-title), #chladni-post-content h3, #chladni-post-content h4, #chladni-post-content h5, #chladni-post-content h6"
+            );
+            dynamicSubheadings.forEach((heading) => {
+              heading.style.fontFamily = "'Roboto Condensed', sans-serif";
+              heading.style.fontWeight = "300";
+            });
+
+            const dynamicParagraphs = document.querySelectorAll(
+              "#chladni-post-content p, #chladni-post-content li"
+            );
+            dynamicParagraphs.forEach((paragraph) => {
+              paragraph.style.fontFamily =
+                "'Nunito Sans', 'Avenir Light', sans-serif";
+              paragraph.style.fontWeight = "300";
+            });
+          })
+          .catch((error) => {
+            console.error("Error loading Chladni Mobius post:", error);
+            const errorMsg =
+              "<p>Sorry, we couldn't load the post right now. Please try again later.</p>";
+            document.getElementById("chladni-post-link").innerHTML = errorMsg;
+            document.getElementById("chladni-post-content").innerHTML =
+              errorMsg;
+          });
+
+        // Navigation functionality
+        document.querySelectorAll(".sidebar a").forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            // Get the target article ID from the href
+            const targetId = this.getAttribute("href").substring(1);
+
+            // Hide all articles
+            document.querySelectorAll("main article").forEach((article) => {
+              article.style.display = "none";
+            });
+
+            // Show the target article
+            document.getElementById(targetId).style.display = "block";
+
+            // Update active state in the sidebar
+            document.querySelectorAll(".sidebar li").forEach((item) => {
+              item.classList.remove("active");
+            });
+            this.parentElement.classList.add("active");
+          });
         });
-    });
-  </script>
-</body>
+      });
+    </script>
+  </body>
 </html>

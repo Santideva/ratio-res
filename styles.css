@@ -1,45 +1,161 @@
+/* Import fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Roboto+Condensed:wght@300;400&display=swap');
+/* Note: Avenir is not available on Google Fonts, so we'll use a similar alternative - Nunito Sans */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400&display=swap');
+
 body {
-    font-family: 'Georgia', serif;
-    background: #fafafa;
-    color: #222;
-    display: flex;
-    flex-direction: column;  /* Stack content vertically */
-    align-items: center;     /* Center the content horizontally */
-    justify-content: flex-start;
-    width: 100%;
+    font-family: 'Nunito Sans', 'Avenir Light', sans-serif; /* Base text font */
+    background: linear-gradient(135deg, 
+                #1a3a1a 0%, 
+                #6d071a 50%, 
+                #d4af37 55%, /* gold highlight */
+                #6d071a 60%,
+                #1a3a1a 100%);
+    background-attachment: fixed;
+    color: #f0f0f0;
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+    grid-template-columns: minmax(150px, 1fr) minmax(300px, 3fr);
+    grid-template-rows: auto 1fr auto;
+    grid-gap: 2rem;
     padding: 2rem;
     box-sizing: border-box;
-}
-
-header, main, footer {
     width: 100%;
-    max-width: 1000px;  /* Ensure it doesn't stretch too wide on large screens */
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;  /* Center the content inside */
+    min-height: 100vh;
+    margin: 0;
 }
 
 header {
-    margin-bottom: 2rem;
+    grid-area: header;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    background-color: rgba(0, 0, 0, 0.4); /* More transparent */
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px); /* Glassmorphism effect */
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background-color: rgba(0, 0, 0, 0.4); /* More transparent */
+    padding: 1.5rem;
+    border-radius: 8px;
+    height: fit-content;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-left: 3px solid rgba(212, 175, 55, 0.7); /* Semi-transparent gold accent */
+    backdrop-filter: blur(5px); /* Glassmorphism effect */
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.sidebar h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 1.3rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #6d071a; /* burgundy accent */
+    color: #1a3a1a; /* Changed to jade green */
+    text-shadow: 0 2px 4px rgba(109, 7, 26, 0.7); /* Red box shadow as text shadow */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar li {
+    margin-bottom: 0.75rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
+}
+
+.sidebar li a {
+    color: #e0e0e0;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.sidebar li a:hover {
+    background-color: rgba(109, 7, 26, 0.6); /* translucent burgundy */
+    transform: translateX(5px);
+}
+
+.sidebar li.active a {
+    background-color: rgba(109, 7, 26, 0.8); /* more opaque burgundy */
+    font-weight: bold;
+    border-left: 3px solid #1a3a1a; /* Changed to jade green */
+    padding-left: calc(0.5rem - 3px);
+}
+
+main {
+    grid-area: main;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 8px;
+    color: #222;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+footer {
+    grid-area: footer;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #1a3a1a; /* Changed to jade green */
+    padding-top: 1rem;
+    border-top: 1px solid rgba(26, 58, 26, 0.3); /* translucent jade green */
+    background-color: rgba(0, 0, 0, 0.4); /* More transparent */
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px); /* Glassmorphism effect */
+    -webkit-backdrop-filter: blur(5px);
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
 }
 
 img.logo {
-    width: 20vw;
-    max-width: 150px;  /* Maximum width of the logo */
-    margin-bottom: 1rem;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    margin: 0;
+    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.6)) opacity(0.85); /* Added opacity for transparency */
+    transition: all 0.3s ease;
+}
+
+img.logo:hover {
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.8)) opacity(0.9);
 }
 
 h1 {
-    font-size: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    font-size: 2.5rem;
     margin-bottom: 0.5rem;
+    color: #1a3a1a; /* Changed to jade green */
+    text-shadow: 2px 2px 4px rgba(109, 7, 26, 0.7); /* Red box shadow as text shadow */
 }
 
 .tagline {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
     font-style: italic;
-    color: #555;
-    margin-bottom: 2rem;
+    color: #e0e0e0;
+    margin-bottom: 1rem;
     font-size: 1.5rem;
+    letter-spacing: 0.5px;
 }
 
 article {
@@ -48,26 +164,116 @@ article {
 }
 
 article img {
-    width: 100%;  /* Make sure images are responsive */
+    width: 100%;
     height: auto;
     margin: 1rem 0;
+    max-width: 800px;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
-footer {
-    text-align: center;
-    font-size: 0.9rem;
-    color: #888;
-    margin-top: 2rem;
+.post-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    border-bottom: 2px solid #6d071a; /* burgundy border */
+    padding-bottom: 0.5rem;
+    color: #1a3a1a; /* Changed to jade green */
+    font-size: 1.8rem;
+    text-shadow: 1px 1px 3px rgba(109, 7, 26, 0.7); /* Red box shadow as text shadow */
 }
 
-/* Flexbox for the images in articles */
+/* Subheadings */
+h2:not(.post-title), h3, h4, h5, h6 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
+    color: #1a3a1a;
+}
+
+/* Chladni post specific styles */
 .chladni-post img {
     display: inline-block;
     max-height: 200px;
     width: auto;
     margin-right: 20px;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .chladni-post img:last-child {
     margin-right: 0;
+}
+
+/* For narrow screens - stack layout without media queries */
+@supports (width: min-content) {
+    body {
+        grid-template-columns: minmax(150px, 1fr) minmax(300px, 3fr);
+    }
+    
+    /* When viewport is narrow, sidebar slides under header */
+    @container (max-width: 768px) {
+        body {
+            grid-template-areas:
+                "header"
+                "sidebar"
+                "main"
+                "footer";
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #6d071a;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #1a3a1a; /* Changed to jade green */
+}
+
+/* Improved typography */
+p, li, blockquote, table, figcaption {
+    font-family: 'Nunito Sans', 'Avenir Light', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+}
+
+/* Link styling */
+main a {
+    color: #6d071a;
+    text-decoration: none;
+    border-bottom: 1px dotted #6d071a;
+    transition: all 0.3s ease;
+}
+
+main a:hover {
+    color: #1a3a1a; /* Changed to jade green */
+    border-bottom: 1px solid #1a3a1a;
+}
+
+/* Fallback for browsers that don't support grid */
+@supports not (grid-template-areas: "test") {
+    body {
+        display: block;
+    }
+    
+    .sidebar, main {
+        display: block;
+        width: 100%;
+    }
+    
+    .sidebar {
+        margin-bottom: 2rem;
+    }
 }

@@ -9,17 +9,16 @@
   <body>
     <div class="chladni-post">
       <h1>Dynamic Geometries: The Chladni-Möbius Visualizer</h1>
-      <p><strong>Date:</strong> April 16, 2025</p>
+      <p><strong>Date:</strong> April, 2025</p>
       <p><strong>Categories:</strong> demo, project</p>
 
       <h2>Dynamic Geometries: The Chladni-Möbius Visualizer</h2>
       <p><strong>Executive Summary</strong></p>
       <p>
-        The Chladni-Möbius Visualizer is an interactive WebGL application that
-        combines principles from physics and mathematics to render complex
-        geometric transformations. By merging Chladni patterns and Möbius
-        transformations—enhanced with noise modulation—this tool produces
-        visualizations that respond to user input and evolve over time.
+        “The Chladni-Möbius Visualizer explores the poetic intersection of
+        physics and math, turning abstract formulae into real-time, interactive
+        art. This tool offer a hands-on experience of symmetry, transformation
+        and resornance to developers, digital artists and math enthusiasts.”
       </p>
 
       <img src="assets/images/chladniPatterns.jpg" alt="ChladniPatterns" />
@@ -51,19 +50,23 @@
 
       <h2>Quick Start</h2>
       <p>Want to try it yourself?</p>
-      <pre><code>git clone https://github.com/your-username/chladni-mobius-visualizer
-cd chladni-mobius-visualizer
+      <pre><code>git clone https://github.com/Santideva/chladni-mobius
+cd chladni-mobius-
 npm install
 npm start</code></pre>
-      <p>
-        Then open your browser at <code>http://localhost:3000</code><br />Or try
-        the live demo
-        <a href="https://your-username.github.io/chladni-mobius-visualizer"
-          >here</a
-        >.
-      </p>
+      <p>Then open your browser at <code>http://localhost:3000</code><br /></p>
 
       <h2>The Core Concepts</h2>
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/IpvblzMMC14?si=dtC2Q0OhzS7CceL1"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
       <h3>🌀 Chladni Patterns</h3>
       <p>
         Chladni patterns are visual manifestations of standing waves—seen when
@@ -95,7 +98,16 @@ npm start</code></pre>
         <li>Twisting the geometry with Möbius transformations</li>
         <li>Modulating with noise for natural variation</li>
       </ul>
-
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/7WN2BaoTZrA?si=vtmQQFBjb2AzYWgu"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
       <h3>🎛️ Interactive Features</h3>
       <p>Users can control:</p>
       <ul>
@@ -118,8 +130,11 @@ npm start</code></pre>
       <iframe
         width="560"
         height="315"
-        src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+        src="https://www.youtube.com/embed/LDBks8btU4Y?si=2xhRJhP3IeIrPMJO"
+        title="YouTube video player"
         frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen
       ></iframe>
 
@@ -138,33 +153,6 @@ npm start</code></pre>
           (Three.js)
         </li>
       </ul>
-
-      <h3>Rendering Pipeline</h3>
-      <pre><code>const combinedMatrix = new THREE.Matrix4();
-combinedMatrix.multiply(positionMatrix);
-combinedMatrix.multiply(noiseMatrix);
-combinedMatrix.multiply(mobiusMatrix);
-combinedMatrix.multiply(chladniMatrix);</code></pre>
-
-      <h3>Shader Pipeline (GLSL)</h3>
-      <pre><code>vec2 complex_mul(vec2 a, vec2 b) {
-  return vec2(a.x * b.x - a.y * b.y, a.x * b.y + a.y * b.x);
-}
-
-vec2 complex_div(vec2 a, vec2 b) {
-  float denom = b.x*b.x + b.y*b.y;
-  return vec2((a.x*b.x + a.y*b.y)/denom, (a.y*b.x - a.x*b.y)/denom);
-}</code></pre>
-
-      <h3>Enhanced Möbius Function</h3>
-      <pre><code>vec3 applyEnhancedMobius(vec3 pos, float time) {
-  float r = length(pos.xy);
-  float angle = uMobiusFactor * r;
-  float zInfluence = 1.0 + 0.5 * sin(pos.z * 0.5);
-  angle *= zInfluence;
-  // apply twist via matrix rotation logic
-  return rotated;
-}</code></pre>
 
       <h3>State Management</h3>
       <ul>
@@ -199,16 +187,79 @@ vec2 complex_div(vec2 a, vec2 b) {
         <li>Mobile optimization</li>
       </ul>
 
-      <h3>🤓 Under the Hood</h3>
+      <h2>🤓 Under the Hood</h2>
+      <h3>Rendering Pipeline</h3>
+      <pre><code>const combinedMatrix = new THREE.Matrix4();
+combinedMatrix.multiply(positionMatrix);
+combinedMatrix.multiply(noiseMatrix);
+combinedMatrix.multiply(mobiusMatrix);
+combinedMatrix.multiply(chladniMatrix);</code></pre>
+
+      <h3>Shader Pipeline (GLSL)</h3>
       <p>
-        Screenshots of code, state tree, and transformation diagrams can go
-        here.
+        Our shader system combines the power of WebGL with advanced mathematical
+        transformations. The vertex shader processes every vertex through key
+        transformation steps:
       </p>
+      <p>1. Apply noise displacement for organic variety</p>
+      <pre><code>pos = applyNoiseDisplacement(pos, time);</code></pre>
+
+      <p>2. Apply Möbius transformation</p>
+      <pre><code>if (uUseClassicalMobius) { vec2 mobiusResult =
+      applyClassicalMobius(pos.xy, time); pos = vec3(mobiusResult, pos.z); }
+      else { pos = applyEnhancedMobius(pos, time); } </code></pre>
+
+      <p>3. Apply Chladni pattern</p>
+      <pre><code>vec3 chladniPos = applyChladniTransform(pos.xy, time); pos.z +=
+      chladniPos.z;
+      // Add the z component</code></pre>
+
+      <pre><code>vec2 complex_mul(vec2 a, vec2 b) {
+  return vec2(a.x * b.x - a.y * b.y, a.x * b.y + a.y * b.x);
+}
+
+vec2 complex_div(vec2 a, vec2 b) {
+  float denom = b.x*b.x + b.y*b.y;
+  return vec2((a.x*b.x + a.y*b.y)/denom, (a.y*b.x - a.x*b.y)/denom);
+}</code></pre>
+
+      <h3>Enhanced Möbius Function</h3>
+      <pre><code>vec3 applyEnhancedMobius(vec3 pos, float time) {
+  float r = length(pos.xy);
+  float angle = uMobiusFactor * r;
+  float zInfluence = 1.0 + 0.5 * sin(pos.z * 0.5);
+  angle *= zInfluence;
+  // apply twist via matrix rotation logic
+  return rotated;
+}</code></pre>
+
+      <p>
+        For the classical Möbius transformation, we implement complex number
+        operations directly in the shader:
+      </p>
+      <pre><code>vec2 complex_mul(vec2 a, vec2 b) {
+        return vec2(a.x * b.x - a.y * b.y, a.x * b.y + a.y * b.x);
+      }
+      
+      vec2 complex_div(vec2 a, vec2 b) {
+        float denominator = b.x * b.x + b.y * b.y;
+        if (denominator < 0.0001) {
+          // Handle small denominators
+          float magnitude = sqrt(a.x * a.x + a.y * a.y);
+          if (magnitude < 0.0001) return vec2(0.0, 0.0);
+          float scale = 1000.0 / magnitude;
+          return vec2(a.x * scale, a.y * scale);
+        }
+        return vec2(
+          (a.x * b.x + a.y * b.y) / denominator,
+          (a.y * b.x - a.x * b.y) / denominator
+        );
+      }</code></pre>
 
       <h3>💬 Community & Contributions</h3>
       <p><strong>Share Your Visuals!</strong></p>
       <ul>
-        <li>Post to Twitter with <code>#ChladniMobius</code></li>
+        <li>Post to Twitter/Instagram with <code>#ChladniMobius</code></li>
         <li>Share preset configs</li>
         <li>Create tutorials!</li>
       </ul>
@@ -231,7 +282,13 @@ vec2 complex_div(vec2 a, vec2 b) {
 
       <h3>👤 About the Author</h3>
       <p>
-        Brief bio here: background in WebGL, creative coding, or mathematics.
+        About the Author: I bring a unique, intersectional perspective to
+        creative coding and digital experiences. While formally education in Law
+        and History, I've transitioned into JavaScript development, specializing
+        in WebGL and interactive visualizations. My approach combines meticulous
+        research with artistic sensibility, informed by my background in
+        creating both acoustic and electronic music. I strive to bridge
+        disciplines through thoughtful design and innovative technology.
       </p>
 
       <h3>📚 Resources</h3>
@@ -244,10 +301,9 @@ vec2 complex_div(vec2 a, vec2 b) {
 
       <h3>📬 Contact</h3>
       <ul>
-        <li>GitHub: yourusername</li>
-        <li>Twitter: @yourhandle</li>
-        <li>Email: contact@example.com</li>
-        <li>Website: yourdomain.com</li>
+        <li>GitHub: https://github.com/Santideva</li>
+        <li>Instagram: https://www.instagram.com/livetrope/</li>
+        <li>Email: gauravtejpal@gmail.com</li>
       </ul>
     </div>
   </body>
